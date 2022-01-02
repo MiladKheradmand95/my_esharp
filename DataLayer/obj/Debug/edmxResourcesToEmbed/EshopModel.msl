@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MyEshop_DBModelStoreContainer" CdmEntityContainer="MyEshop_DBEntities">
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Roles">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Users">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Groups">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Product_Groups">
+        <MappingFragment StoreEntitySet="Product_Groups">
+          <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+          <ScalarProperty Name="GroupTitle" ColumnName="GroupTitle" />
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Galleries">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Product_Galleries">
+        <MappingFragment StoreEntitySet="Product_Galleries">
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="GalleryID" ColumnName="GalleryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Selected_Groups">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Product_Selected_Groups">
+        <MappingFragment StoreEntitySet="Product_Selected_Groups">
+          <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PG_ID" ColumnName="PG_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Tags">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Product_Tags">
+        <MappingFragment StoreEntitySet="Product_Tags">
+          <ScalarProperty Name="Tag" ColumnName="Tag" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Products">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Feature">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Feature">
+        <MappingFragment StoreEntitySet="Feature">
+          <ScalarProperty Name="FeatureTitle" ColumnName="FeatureTitle" />
+          <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_Feature">
+      <EntityTypeMapping TypeName="MyEshop_DBModel.Product_Feature">
+        <MappingFragment StoreEntitySet="Product_Feature">
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="FeatureID" ColumnName="FeatureID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="PF_ID" ColumnName="PF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

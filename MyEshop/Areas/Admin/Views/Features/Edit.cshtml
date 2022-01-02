@@ -1,0 +1,38 @@
+﻿@model DataLayer.Feature
+
+@{
+    ViewBag.Title = "ویرایش ویژگی";
+    Layout = "~/Areas/Admin/Views/Shared/_DefultLayout.cshtml";
+}
+
+<h2>ویرایش ویژگی</h2>
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="col-md-5">
+            <div class="form-horizontal">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.FeatureID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FeatureTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.FeatureTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FeatureTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="ثبت ویرایش" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div style="margin-right:117px">
+    @Html.ActionLink("بازگشت به لیست", "Index")
+</div>

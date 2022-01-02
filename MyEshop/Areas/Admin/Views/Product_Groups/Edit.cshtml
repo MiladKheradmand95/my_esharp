@@ -1,0 +1,34 @@
+﻿@model DataLayer.Product_Groups
+
+@{
+    ViewBag.Title = "ویرایش گروه";
+}
+
+
+@using (Ajax.BeginForm("Edit", "Product_Groups", FormMethod.Post, new AjaxOptions()
+{
+    OnSuccess = "Success",
+    UpdateTargetId = "listGroup"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model=>model.ParentID)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.GroupID)
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupTitle, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GroupTitle)
+                @Html.ValidationMessageFor(model => model.GroupTitle)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ویرایش" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+

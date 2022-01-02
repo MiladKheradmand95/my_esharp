@@ -1,0 +1,41 @@
+﻿.field-validation-valid
+{
+    display:none;
+}
+.filter input[type=text] {
+    width: 100% !important;
+ 
+}
+.filter input[type=checkbox] {
+    margin:2px;
+}
+.filter ul{
+    padding:5px;
+}
+
+#imgProduct {
+    height:150px;
+}
+#textProduct {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 40px;
+    text-align:center;
+}
+#spanProduct {
+    width: 100%;
+    margin-top: 5px;
+}
+#bioo {
+    cursor: pointer !important;
+}
+
+.reply-button {
+    cursor: pointer !important;
+}
+
+.delete-button {
+    cursor: pointer !important;
+}

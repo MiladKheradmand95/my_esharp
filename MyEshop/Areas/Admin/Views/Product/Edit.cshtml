@@ -1,0 +1,149 @@
+﻿@model DataLayer.Product
+
+@{
+    ViewBag.Title = "ویرایش محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    List<Product_Selected_Groups> selected = ViewBag.SelectedGroup;
+}
+
+    <h2>ویرایش محصول </h2>
+    <div class="row">
+
+        @using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(m => m.ProductID)
+            @Html.HiddenFor(m => m.CreateDate)
+            @Html.HiddenFor(m => m.ImageName)
+            <div class="col-md-8">
+                @Html.AntiForgeryToken()
+
+                @if (ViewBag.Error == true)
+                {
+                    <div class="alert alert-danger">
+                        گروه محصولات را انتخاب کنید...
+                    </div>
+                }
+
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true)
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Title)
+                            @Html.ValidationMessageFor(model => model.Title)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShortDescription, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ShortDescription)
+                            @Html.ValidationMessageFor(model => model.ShortDescription)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Text, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Text)
+                            @Html.ValidationMessageFor(model => model.Text)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Price)
+                            @Html.ValidationMessageFor(model => model.Price)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="control-label col-md-2">کلمات کلیدی</span>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" value="@ViewBag.Tags" name="Tags" placeholder="کلمات کلیدی را با  , از هم جدا کنید." />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="ویرایش محصول" class="btn btn-warning" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">تصویر محصول</div>
+                    <div class="panel-body">
+                        <img id="imgPreviewProduct" style="margin:8px auto" src="~/Images/ProductImages/Thumb/@Model.ImageName" class="thumbnail" />
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ImageName, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                <input type="file" id="ImageProduct" name="ImageProduct" />
+                                @Html.ValidationMessageFor(model => model.ImageName)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">انتخاب گروه</div>
+                    <div class="panel-body">
+                        @{
+                            List<DataLayer.Product_Groups> groups = ViewBag.groups;
+                            <ul>
+                                @foreach (var group in groups.Where(g => g.ParentID == null))
+                                {
+                                    <li><input type="checkbox" @((selected.Any(g => g.GroupID == group.GroupID)) ? "checked" : "") name="selectedGroups" value="@group.GroupID" /> <span>@group.GroupTitle</span></li>
+                                    if (groups.Any(g => g.ParentID != null))
+                                    {
+                                        <ul>
+                                            @foreach (var subgruops in group.Product_Groups1)
+                                            {
+                                                <li><input type="checkbox" @((selected.Any(g => g.GroupID == subgruops.GroupID)) ? "checked" : "") name="selectedGroups" value="@subgruops.GroupID" /> <span>@subgruops.GroupTitle</span></li>
+                                            }
+                                        </ul>
+                                    }
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+<div>
+    @Html.ActionLink("بازگشت به لیست محصول", "Index")
+</div>
+
+@section Scripts
+{
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#imgPreviewProduct').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#ImageProduct").change(function () {
+            readURL(this);
+        });
+    </script>
+    <script src="/ckeditor/ckeditor.js"></script>
+    <script src="/ckeditor/adapters/jquery.js"></script>
+    <script>
+        $(function () {
+            $('#Text').ckeditor();
+        });
+    </script>
+
+}

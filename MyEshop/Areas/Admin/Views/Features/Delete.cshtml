@@ -1,0 +1,32 @@
+﻿@model DataLayer.Feature
+
+@{
+    ViewBag.Title = "حذف ویژگی";
+    Layout = "~/Areas/Admin/Views/Shared/_DefultLayout.cshtml";
+}
+
+    <h2>حذف ویژگی</h2>
+
+<h3>آیا شما از حذف ویژگی "@Model.FeatureTitle" مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FeatureTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FeatureTitle)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف ویژگی" class="btn btn-danger" style="margin:8px" /> 
+            @Html.ActionLink("بازگشت به لیست", "Index")
+        </div>
+    }
+</div>

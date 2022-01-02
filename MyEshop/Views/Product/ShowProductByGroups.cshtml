@@ -1,0 +1,18 @@
+﻿@model IEnumerable<DataLayer.Product>
+@{
+    ViewBag.Title = "ShowProductByGroups";
+}
+<section class="last-products">
+    <article>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_Product", item)
+
+        }
+
+        <div class="clearfix"></div>
+    </article>
+</section>
+
+
+

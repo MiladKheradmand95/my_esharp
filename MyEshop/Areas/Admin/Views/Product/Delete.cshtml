@@ -1,0 +1,75 @@
+﻿@model DataLayer.Product
+
+@{
+    ViewBag.Title = "حذف محصول";
+    Layout = "~/Areas/Admin/Views/Shared/_DefultLayout.cshtml";
+}
+
+<h2>حذف محصول</h2>
+
+<h3>آیا از حدف محصول "@Model.Title" مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShortDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShortDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+
+        <dd>
+            <img src="~/Images/ProductImages/Thumb/@Model.ImageName" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+           @{ 
+               var date = Model.CreateDate.Toshamsi();
+           }
+            @date
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="حذف" class="btn btn-danger" /> |
+            <a href="/Admin/Product/index" class="btn btn-primary">بازگشت به لیست</a>
+        </div>
+    }
+</div>

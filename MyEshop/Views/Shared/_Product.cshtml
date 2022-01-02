@@ -1,0 +1,19 @@
+﻿@model DataLayer.Product
+    
+<div class="col-md-4 col-sm-6">
+    <div class="border-radius">
+        <span id="spanProduct">
+            <img  id="imgProduct" src="~/Images/ProductImages/Thumb/@Model.ImageName">
+        </span>
+        <a href="/ShowProduct/@Model.ProductID" id="textProduct">
+            @Model.Title
+        </a>
+        <h6>افزودن به لیست مقایسه <input type="checkbox"></h6>
+        <span class="col-md-9 col-sm-9 col-xs-9 price-layer">
+            <label>@Model.Price.ToString("#,0")  تومان</label>
+        </span>
+        <a onclick="ShopCart(@Model.ProductID)" class="col-md-2 col-sm-2 col-xs-2 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 buy-button border-radius">
+            <label><i class="fa fa-shopping-basket"></i></label>
+        </a>
+    </div>
+</div>

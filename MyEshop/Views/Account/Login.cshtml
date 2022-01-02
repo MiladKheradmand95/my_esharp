@@ -1,0 +1,67 @@
+﻿@model DataLayer.ViewModels.LoginViewModels
+
+@{
+    ViewBag.Title = "ورود به سایت";
+}
+
+<h2>ورود کاربران</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <br />
+        @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
+        {
+            <div class="alert alert-danger">
+                <p>شما مجوز ورود به بخش درخواست شده را ندارید</p>
+            </div>
+        }
+        @if (Request.QueryString["Recovery"] != null)
+        {
+            <div class="alert alert-success">
+                <p>کلمه عبور با موفقیت تغییر کرد</p>
+                <p>میتوانید وارد حساب کاربری خود شوید</p>
+            </div>
+        }
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RememberMe, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RememberMe)
+                @Html.ValidationMessageFor(model => model.RememberMe)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <a href="/ForgetPassword" class="btn btn-info">فراموشی کلمه عبور</a>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="ورود" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
