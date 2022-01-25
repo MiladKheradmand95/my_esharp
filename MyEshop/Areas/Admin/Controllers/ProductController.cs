@@ -10,9 +10,11 @@ using InsertShowImage;
 using DataLayer;
 using System.IO;
 using KooyWebApp_MVC.Classes;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Areas.Admin.Controllers
 {
+    [MinifyHtml]
     public class ProductController : Controller
     {
         private MyEshop_DBEntities db = new MyEshop_DBEntities();

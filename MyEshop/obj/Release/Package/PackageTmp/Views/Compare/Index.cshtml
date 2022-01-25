@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DataLayer.CompareItem>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>مقایسه محصولات</h2>
+<hr />
+@if (Model.Any())
+{
+
+
+    <table class="table table-bordered">
+
+        <tr>
+            <td>
+                تصویر
+            </td>
+            @foreach (var item in Model)
+            {
+                <td>
+                    <img style="margin:auto !important;" src="/Images/ProductImages/Thumb/@item.ImageName" alt="Alternate Text" class="thumbnail" />
+                    <p>@item.Title</p>
+                </td>
+            }
+        </tr>
+        @{
+
+            List<DataLayer.Feature> listfeatures = ViewBag.features as List<DataLayer.Feature>;
+            List<DataLayer.Product_Feature> product_Features = ViewBag.product_Features as List<DataLayer.Product_Feature>;
+        }
+        @foreach (var item in listfeatures)
+        {
+            <tr>
+                <td>
+                    @item.FeatureTitle
+                </td>
+                @foreach(var features in Model)
+                {
+                    <td>
+                        @string.Join(" - ", product_Features.Where(f => f.ProductID == features.ProductID && f.FeatureID == item.FeatureID).Select(f=>f.Value))
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+}

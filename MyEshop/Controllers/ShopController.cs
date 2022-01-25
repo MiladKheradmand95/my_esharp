@@ -6,9 +6,11 @@ using System.Net.Http;
 using System.Web.Http;
 using DataLayer;
 using System.Web;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Controllers
 {
+    [MinifyHtml]
     public class ShopController : ApiController
     {
         // GET: api/Shop

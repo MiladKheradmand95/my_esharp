@@ -7,9 +7,11 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Areas.Admin
 {
+    [MinifyHtml]
     public class Product_GroupsController : Controller
     {
         private MyEshop_DBEntities db = new MyEshop_DBEntities();

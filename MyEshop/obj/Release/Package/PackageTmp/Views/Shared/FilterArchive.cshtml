@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DataLayer.Product>
+<section class="border-radius">
+    <header><h3> فیلتر ها  </h3></header>
+    <article class="filter">
+        <form action="/Archive" id="filterForm">
+            <input type="hidden" name="pageId" id="pageId" value="@ViewBag.pageId" />
+            <p>عنوان</p>
+            <p>
+                <input type="text" class="form-control" name="title" value="@ViewBag.ProductTitle" />
+            </p>
+            <p>قیمت از:</p>
+            <p>
+                <input type="number" value="@ViewBag.ProductMinPrice" class="form-control" name="minPrice" />
+            </p>
+            <p>قیمت تا:</p>
+            <p>
+                <input type="number" value="@ViewBag.ProductMaxPrice" class="form-control" name="maxPrice" />
+            </p>
+            @{
+                List<DataLayer.Product_Groups> list = ViewBag.Groups;
+                List<int> selected = ViewBag.ProductGroups ?? new List<int>();
+            }
+            <p>گروه ها</p>
+            <ul>
+                @foreach (var group in list.Where(l => l.ParentID == null))
+                {
+                    <li>
+                        <input type="checkbox" @((selected.Any(s=>s==group.GroupID))?"checked":"") name="selectedGroups" value="@group.GroupID" />
+                        <span> @group.GroupTitle</span>
+                        @if (list.Any(l=>l.ParentID==group.GroupID))
+                        {
+                            <ul>
+                                @foreach (var subGroup in list.Where(l=>l.ParentID==group.GroupID))
+                                {
+                                    <li>
+                                        <input type="checkbox" @((selected.Any(s=>s==subGroup.GroupID))?"checked":"")  name="selectedGroups" value="@subGroup.GroupID" />
+                                        <span>@subGroup.GroupTitle</span>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </li>
+                }
+            </ul>
+
+            <input type="submit" class="btn btn-block  btn-primary" name="name" value="اعمال تغیرات" />
+        </form>
+
+    </article>
+</section>

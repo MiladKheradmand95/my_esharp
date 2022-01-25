@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Controllers
 {
+    [MinifyHtml]
     public class ShopCartController : Controller
     {
         MyEshop_DBEntities db = new MyEshop_DBEntities();
@@ -116,10 +118,11 @@ namespace MyEshop.Controllers
                     ProductID = item.ProductId
                 });
             }
-            db.SaveChanges();
-            
-            //TODO: Online Payment
 
+            //TODO: Online Payment
+            var res = db.Orders.Find(order.OrderID);
+            res.IsFinaly = true;
+            db.SaveChanges();
             return null;
         }
     }

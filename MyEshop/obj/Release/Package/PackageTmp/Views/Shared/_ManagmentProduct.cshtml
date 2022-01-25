@@ -1,0 +1,4 @@
+﻿@if (User.Identity.IsAuthenticated && Roles.GetRolesForUser().Contains("admin"))
+{
+    <li><a href="/Admin/Product/Index">پنل مدیریت </a></li>
+}

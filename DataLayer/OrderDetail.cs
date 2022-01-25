@@ -18,8 +18,9 @@ namespace DataLayer
         public int OrderID { get; set; }
         public int ProductID { get; set; }
         public int Price { get; set; }
-        public int Count { get; set; }
+        public Nullable<int> Count { get; set; }
     
+        public virtual Order Order { get; set; }
         public virtual Product Product { get; set; }
     }
 }

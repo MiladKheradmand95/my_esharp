@@ -4,23 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="22b0054bb4b347ae8e6fa14b7aa4fb1f" Name="Diagram1">
-        <EntityTypeShape EntityType="MyEshop_DBModel.Feature" Width="1.5" PointX="3.75" PointY="11.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.OrderDetail" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Order" Width="1.5" PointX="10.25" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Comment" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+      <Diagram DiagramId="d7bc87fb4d9847efa61471fb05a2fd9b" Name="Diagram1">
+        <EntityTypeShape EntityType="MyEshop_DBModel.Feature" Width="1.5" PointX="3.75" PointY="13.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.OrderDetail" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Order" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Comment" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="MyEshop_DBModel.Product_Feature" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Galleries" Width="1.5" PointX="3" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Groups" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Selected_Groups" Width="1.5" PointX="6" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Tags" Width="1.5" PointX="3" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.Role" Width="1.5" PointX="5.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MyEshop_DBModel.User" Width="1.5" PointX="8" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Galleries" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Groups" Width="1.5" PointX="3.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Selected_Groups" Width="1.5" PointX="6" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Product_Tags" Width="1.5" PointX="3" PointY="21.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Role" Width="1.5" PointX="1.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.SiteVisit" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.Slider" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.sysdiagram" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyEshop_DBModel.User" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="MyEshop_DBModel.FK_Product_Feature_Feature" ManuallyRouted="false" />
-        <AssociationConnector Association="MyEshop_DBModel.FK_OrderDetails_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="MyEshop_DBModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="MyEshop_DBModel.OrderID" ManuallyRouted="false" />
+        <AssociationConnector Association="MyEshop_DBModel.ProductID" ManuallyRouted="false" />
+        <AssociationConnector Association="MyEshop_DBModel.usetTable" ManuallyRouted="false" />
         <AssociationConnector Association="MyEshop_DBModel.FK_Product_Comment_Product" ManuallyRouted="false" />
         <AssociationConnector Association="MyEshop_DBModel.FK_Product_Feature_Products" ManuallyRouted="false" />
         <AssociationConnector Association="MyEshop_DBModel.FK_Product_Galleries_Products" ManuallyRouted="false" />

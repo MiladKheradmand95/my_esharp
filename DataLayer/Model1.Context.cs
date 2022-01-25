@@ -36,6 +36,8 @@ namespace DataLayer
         public virtual DbSet<Product_Selected_Groups> Product_Selected_Groups { get; set; }
         public virtual DbSet<Product_Tags> Product_Tags { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<SiteVisit> SiteVisits { get; set; }
+        public virtual DbSet<Slider> Sliders { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
     }

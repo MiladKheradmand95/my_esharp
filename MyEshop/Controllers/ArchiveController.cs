@@ -4,9 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Controllers
 {
+    [MinifyHtml]
     public class ArchiveController : Controller
     {
         MyEshop_DBEntities db = new MyEshop_DBEntities();

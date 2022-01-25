@@ -6,9 +6,15 @@ using System.Web.Mvc;
 using System.Web.Security;
 using DataLayer.ViewModels;
 using DataLayer;
+using WebMarkupMin.AspNet4.Mvc;
+using System.Net;
+using System.IO;
+using Newtonsoft.Json;
+using MyEshop.Utilities;
 
 namespace MyEshop.Controllers
 {
+    [MinifyHtml]
     public class AccountController : Controller
     {
         MyEshop_DBEntities db = new MyEshop_DBEntities();
@@ -28,8 +34,44 @@ namespace MyEshop.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("Register")]
-        public ActionResult Register(RegisterviewModel register)
+        public ActionResult Register(FormCollection form,RegisterviewModel register)
         {
+
+            string urlToPost = "https://www.google.com/recaptcha/api/siteverify";
+            string secretKey = "6LfxmiIeAAAAAFSKZCdxCqgQaeOk3tWGzRJKcD0o"; // change this
+            string gRecaptchaResponse = form["g-recaptcha-response"];
+
+            var postData = "secret=" + secretKey + "&response=" + gRecaptchaResponse;
+
+            // send post data
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlToPost);
+            request.Method = "POST";
+            request.ContentLength = postData.Length;
+            request.ContentType = "application/x-www-form-urlencoded";
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamWriter.Write(postData);
+            }
+
+            // receive the response now
+            string result = string.Empty;
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+
+            // validate the response from Google reCaptcha
+            var captChaesponse = JsonConvert.DeserializeObject<reCaptchaResponse>(result);
+            if (!captChaesponse.Success)
+            {
+                ViewBag.Message = "Sorry, please validate the reCAPTCHA";
+                return View();
+            }
+            // go ahead and write code to validate username password against database
             if (ModelState.IsValid)
             {
                 if (!db.Users.Any(u => u.Email == register.Email.Trim().ToLower()))
@@ -80,8 +122,44 @@ namespace MyEshop.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login(LoginViewModels login, string ReturnUrl = "/")
+        public ActionResult Login(FormCollection form,LoginViewModels login, string ReturnUrl = "/")
         {
+
+            string urlToPost = "https://www.google.com/recaptcha/api/siteverify";
+            string secretKey = "6LfxmiIeAAAAAFSKZCdxCqgQaeOk3tWGzRJKcD0o"; // change this
+            string gRecaptchaResponse = form["g-recaptcha-response"];
+
+            var postData = "secret=" + secretKey + "&response=" + gRecaptchaResponse;
+
+            // send post data
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlToPost);
+            request.Method = "POST";
+            request.ContentLength = postData.Length;
+            request.ContentType = "application/x-www-form-urlencoded";
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamWriter.Write(postData);
+            }
+
+            // receive the response now
+            string result = string.Empty;
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+
+            // validate the response from Google reCaptcha
+            var captChaesponse = JsonConvert.DeserializeObject<reCaptchaResponse>(result);
+            if (!captChaesponse.Success)
+            {
+                ViewBag.Message = "Sorry, please validate the reCAPTCHA";
+                return View();
+            }
+            // go ahead and write code to validate username password against database
             if (ModelState.IsValid)
             {
                 string hashPassword = FormsAuthentication.HashPasswordForStoringInConfigFile(login.Password, "MD5");
@@ -91,6 +169,7 @@ namespace MyEshop.Controllers
                     if (user.IsActive == true)
                     {
                         FormsAuthentication.SetAuthCookie(user.UserName, login.RememberMe);
+                        //ViewBag.IsSuccess = true;
                         return Redirect(ReturnUrl);
                     }
                     else
@@ -122,8 +201,45 @@ namespace MyEshop.Controllers
 
         [HttpPost]
         [Route("ForgetPassword")]
-        public ActionResult ForgetPassword(ForgetPassword forget)
+        public ActionResult ForgetPassword(FormCollection form, ForgetPassword forget)
         {
+
+            string urlToPost = "https://www.google.com/recaptcha/api/siteverify";
+            string secretKey = "6LfxmiIeAAAAAFSKZCdxCqgQaeOk3tWGzRJKcD0o"; // change this
+            string gRecaptchaResponse = form["g-recaptcha-response"];
+
+            var postData = "secret=" + secretKey + "&response=" + gRecaptchaResponse;
+
+            // send post data
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(urlToPost);
+            request.Method = "POST";
+            request.ContentLength = postData.Length;
+            request.ContentType = "application/x-www-form-urlencoded";
+
+            using (var streamWriter = new StreamWriter(request.GetRequestStream()))
+            {
+                streamWriter.Write(postData);
+            }
+
+            // receive the response now
+            string result = string.Empty;
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+                using (var reader = new StreamReader(response.GetResponseStream()))
+                {
+                    result = reader.ReadToEnd();
+                }
+            }
+
+            // validate the response from Google reCaptcha
+            var captChaesponse = JsonConvert.DeserializeObject<reCaptchaResponse>(result);
+            if (!captChaesponse.Success)
+            {
+                ViewBag.Message = "Sorry, please validate the reCAPTCHA";
+                return View();
+            }
+            // go ahead and write code to validate username password against database
+
             if (ModelState.IsValid)
             {
                 var user = db.Users.SingleOrDefault(u => u.Email == forget.Email);
@@ -171,6 +287,7 @@ namespace MyEshop.Controllers
 
             return View();
         }
+       
     }
 
 }

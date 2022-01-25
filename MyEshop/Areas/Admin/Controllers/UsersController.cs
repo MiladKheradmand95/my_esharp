@@ -8,9 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DataLayer;
+using WebMarkupMin.AspNet4.Mvc;
 
 namespace MyEshop.Areas.Admin.Controllers
 {
+    [MinifyHtml]
     public class UsersController : Controller
     {
         private MyEshop_DBEntities db = new MyEshop_DBEntities();
